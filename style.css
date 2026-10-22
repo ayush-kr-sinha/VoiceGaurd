@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg:#171717;
+  --panel:#0f0f0f;
+  --panel2:#121212;
+  --border:#2d2d2d;
+  --muted:#929292;
+  --text:#f0f0f0;
+  --red:#e9513f;
+  --red2:#ff624c;
+  --green:#4fa77d;
+  --yellow:#c9824c;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  overflow:hidden;
+  min-height:100vh;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 20% 0%,rgba(255,255,255,.035),transparent 28%),
+    linear-gradient(135deg,#252525 0%,#161616 55%,#222 100%);
+  font-family:Inter,Arial,sans-serif;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app-shell{width:min(1160px,calc(100% - 32px));height:calc(100dvh - 32px);min-height:0;margin:16px auto;display:flex;flex-direction:column}
+.topbar{
+  height:64px;
+  background:#0c0c0c;
+  border:1px solid #292929;
+  border-radius:10px 10px 0 0;
+  display:flex;
+  align-items:center;
+  padding:0 34px;
+  box-shadow:0 18px 45px rgba(0,0,0,.28);
+}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:#d94b3e;font-family:"Barlow Condensed",sans-serif;font-size:20px}
+.brand span:last-child span{color:#8d8d8d}
+.brand-mark{font-size:15px}
+nav{display:flex;gap:34px;margin-left:55px;height:100%}
+.nav-link{
+  color:#878787;background:none;border:0;border-bottom:2px solid transparent;
+  padding:0 2px;font-family:"Barlow Condensed",sans-serif;font-size:16px;
+}
+.nav-link:hover,.nav-link.active{color:#eee;border-bottom-color:var(--red)}
+main{background:#0c0c0c;border:1px solid #292929;border-top:0;flex:1;min-height:0;overflow:hidden;padding:clamp(22px,4.5vh,48px) clamp(22px,6.5vw,76px);display:flex;flex-direction:column}
+.page{display:none;min-height:0;overflow:auto}
+.active-page{display:block;flex:1;min-height:0}
+.hero{max-width:680px;margin:0 auto clamp(14px,2.8vh,28px);text-align:left}
+.eyebrow{color:#a13d34;font-size:11px;letter-spacing:1.5px;font-weight:600;margin-bottom:9px}
+h1,h2,h3{font-family:"Barlow Condensed",sans-serif}
+h1{font-size:37px;line-height:1.05;margin:0 0 10px}
+h2{font-size:27px;margin:0}
+h3{font-size:21px;margin:0 0 8px}
+p{color:#b7b7b7;line-height:1.55}
+.hero p{font-size:14px;margin:0}
+.drop-zone{
+  width:min(610px,100%);height:min(39vh,270px);min-height:185px;margin:0 auto;
+  border:1px dashed #88463f;border-radius:8px;
+  background:linear-gradient(145deg,#111,#151515);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:.2s;
+}
+.drop-zone.dragover{border-color:#ff6655;background:#19100f}
+.upload-icon{font-size:31px;color:#b74c40;margin-bottom:12px}
+.drop-title{font-family:"Barlow Condensed",sans-serif;font-size:20px}
+.or{color:#777;margin:8px 0}
+.choose-btn,.primary-btn,.secondary-btn{
+  border:0;border-radius:7px;padding:10px 19px;
+  transition:.2s;
+}
+.choose-btn,.primary-btn{background:var(--red);color:#fff}
+.choose-btn:hover,.primary-btn:hover{background:var(--red2);transform:translateY(-1px)}
+.supported{color:#777;font-size:10px;margin-top:clamp(12px,2.5vh,28px)}
+.file-card,.result-card,.loading{
+  width:min(610px,100%);margin:clamp(10px,2vh,18px) auto 0;
+  border:1px solid #2c2c2c;background:#111;border-radius:8px;padding:15px;
+}
+.file-card{display:flex;align-items:center;gap:13px}
+.file-icon{width:38px;height:38px;border:1px solid #6d3933;border-radius:6px;display:grid;place-items:center;color:#e75a49}
+.file-info{display:flex;flex-direction:column;flex:1;gap:4px}
+.file-info span{font-size:11px;color:#777}
+.icon-btn{background:none;border:0;color:#777;font-size:22px}
+.analyze-area{text-align:center;margin:17px 0}
+.loading{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.loading span{color:#777;font-size:12px;width:100%;text-align:center}
+.spinner{width:18px;height:18px;border:2px solid #40201d;border-top-color:var(--red);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.result-card{padding:clamp(14px,2.5vh,25px)}
+.result-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #292929;padding-bottom:16px}
+.result-label{font-size:10px;color:#777;letter-spacing:1px}
+.badge{padding:5px 11px;border-radius:20px;font-size:11px}
+.badge.low{background:#254f3d;color:#a5d7be}.badge.elevated{background:#5b3a27;color:#f0c49b}.badge.high{background:#682b27;color:#ffb2a7}
+.result-card p{font-size:13px}
+.metrics{margin-top:20px}
+.metrics>div:not(.meter){display:flex;justify-content:space-between;margin:10px 0;font-size:12px;color:#aaa}
+.metrics strong{color:#eee}
+.meter{height:6px;background:#292929;border-radius:99px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--red);border-radius:99px}
+.result-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.result-meta div{border:1px solid #272727;border-radius:6px;padding:11px}
+.result-meta span{display:block;color:#777;font-size:10px;margin-bottom:5px}.result-meta strong{font-size:11px}
+.recommendation{border-left:2px solid var(--red);padding:11px 13px;background:#17100f;color:#aaa;font-size:12px;margin-top:17px}
+.recommendation strong{color:#eee}
+.result-actions{display:flex;gap:9px;margin-top:17px}
+.secondary-btn{background:#292929;color:#eee;border:1px solid #3b3b3b}.secondary-btn:hover{background:#353535}
+.hidden{display:none!important}
+.page-title{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}
+.toolbar{display:flex;justify-content:space-between;gap:15px;margin-bottom:14px}
+.toolbar input,.toolbar select{
+  background:#111;color:#bbb;border:1px solid #333;border-radius:5px;padding:9px 12px;outline:none
+}
+.toolbar input{width:230px}.toolbar select{width:160px}
+.table-wrap{overflow:auto;border:1px solid #292929;border-radius:7px}
+table{width:100%;border-collapse:collapse;min-width:700px;font-family:"Barlow Condensed",sans-serif}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #242424;font-size:13px}
+th{color:#777;font-weight:500}td{color:#bcbcbc}
+tr:last-child td{border-bottom:0}
+.risk-pill{display:inline-block;padding:4px 10px;border-radius:12px;font-size:11px}
+.risk-low{background:#28533f;color:#b5dfc9}.risk-elevated{background:#5a3a28;color:#edc4a0}.risk-high{background:#642d29;color:#ffb3aa}
+.view-btn{background:var(--red);color:#fff;border:0;border-radius:4px;padding:5px 12px;font-size:11px}
+.empty{text-align:center;color:#777;padding:30px}
+.about-page{max-width:800px;margin:auto;width:100%;}.lead{font-size:15px;max-width:650px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.about-grid article{border:1px solid #292929;background:#111;border-radius:7px;padding:20px}
+.about-grid p{font-size:12px;margin:0}
+footer{text-align:center;color:#707070;font-family:"Barlow Condensed",sans-serif;font-size:12px;padding:8px 12px;flex:0 0 auto}
+footer a{color:#8c8c8c}
+
+/* Fit common laptop/desktop screens without page scrolling */
+@media (max-height:760px) and (min-width:701px){
+  .app-shell{margin:10px auto;height:calc(100dvh - 20px)}
+  .topbar{height:54px}
+  main{padding-top:22px;padding-bottom:22px}
+  .hero h1{font-size:31px}
+  .hero p{font-size:12px}
+  .drop-zone{height:32vh;min-height:150px}
+  .upload-icon{font-size:24px;margin-bottom:6px}
+  .supported{margin-top:10px}
+  .result-card{padding:15px}
+  .result-card p{margin:8px 0}
+  .metrics{margin-top:12px}
+  .result-meta{margin-top:12px}
+  .recommendation{margin-top:10px}
+  .result-actions{margin-top:10px}
+}
+
+/* Very short screens */
+@media (max-height:600px) and (min-width:701px){
+  .app-shell{margin:6px auto;height:calc(100dvh - 12px)}
+  .topbar{height:46px}
+  main{padding-top:12px;padding-bottom:12px}
+  .hero{margin-bottom:10px}
+  .hero h1{font-size:26px;margin-bottom:5px}
+  .drop-zone{height:30vh;min-height:125px}
+  .supported{display:none}
+  footer{display:none}
+}
+
+@media(max-width:700px){
+  body{overflow:hidden}
+  .app-shell{width:calc(100% - 14px);height:calc(100dvh - 14px);margin:7px auto}
+  .topbar{padding:0 16px}.topbar nav{margin-left:auto;gap:15px}.nav-link{font-size:14px}
+  main{padding:20px 14px}.hero{margin-left:0}.hero h1{font-size:30px}
+  .toolbar{flex-direction:column}.toolbar input,.toolbar select{width:100%}
+  .about-grid{grid-template-columns:1fr}.result-meta{grid-template-columns:1fr}
+}
+
+
+/* VoiceGuard themed scrollbars */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #6e2c27 #0b0b0b;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6e2c27 #111111;
+}
+
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #0b0b0b;
+  border-left: 1px solid #242424;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8f342c, #4b211e);
+  border: 2px solid #0b0b0b;
+  border-radius: 10px;
+  min-height: 38px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #c44739, #722a24);
+}
+
+*::-webkit-scrollbar-corner {
+  background: #0b0b0b;
+}
+
+/* Keep the main application scrollbar visually subtle */
+.page::-webkit-scrollbar {
+  width: 8px;
+}
+
+.page::-webkit-scrollbar-track {
+  background: #0d0d0d;
+  border-left: 1px solid #242424;
+}
+
+.page::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #71302a, #3b1b19);
+  border: 2px solid #0d0d0d;
+}
+
+.page::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ad4035, #61251f);
+}

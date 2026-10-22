@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoiceGuard — AI Voice Detection</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" data-page="new">
+        <span class="brand-mark">◉</span>
+        <span>Voice<span>Guard</span></span>
+      </a>
+      <nav>
+        <button class="nav-link active" data-page="new">New Analysis</button>
+        <button class="nav-link" data-page="history">History</button>
+        <button class="nav-link" data-page="about">About</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- New Analysis -->
+      <section id="page-new" class="page active-page">
+        <div class="hero">
+          <div class="eyebrow">VOICE AUTHENTICITY ANALYSIS</div>
+          <h1>Is this voice genuine?</h1>
+          <p>Analyze an audio recording for signs of AI-generated or manipulated speech.</p>
+        </div>
+
+        <div id="dropZone" class="drop-zone">
+          <div class="upload-icon">↥</div>
+          <div class="drop-title">Drop your audio here</div>
+          <div class="or">or</div>
+          <label class="choose-btn">
+            Choose audio file
+            <input id="fileInput" type="file" accept="audio/*" hidden>
+          </label>
+          <div class="supported">Supported: WAV, MP3, M4A, AAC · Max file size: 50MB</div>
+        </div>
+
+        <div id="selectedFile" class="file-card hidden">
+          <div class="file-icon">♫</div>
+          <div class="file-info">
+            <strong id="fileName">audio.wav</strong>
+            <span id="fileMeta">0 MB</span>
+          </div>
+          <button id="removeFile" class="icon-btn">×</button>
+        </div>
+
+        <div id="analyzeArea" class="analyze-area hidden">
+          <button id="analyzeBtn" class="primary-btn">Analyze Voice</button>
+        </div>
+
+        <div id="loading" class="loading hidden">
+          <div class="spinner"></div>
+          <strong>Analyzing voice...</strong>
+          <span>Running authenticity checks</span>
+        </div>
+
+        <div id="result" class="result-card hidden">
+          <div class="result-head">
+            <div>
+              <div class="result-label">RESULT STATE</div>
+              <h2 id="riskTitle">Low Risk</h2>
+            </div>
+            <div id="riskBadge" class="badge low">Low Risk</div>
+          </div>
+
+          <p id="resultText">The analysis indicates a very low probability that this voice contains AI-generated segments. Highly likely to be genuine.</p>
+
+          <div class="metrics">
+            <div><span>Model Confidence Score</span><strong id="confidence">98%</strong></div>
+            <div class="meter"><i id="confidenceBar" style="width:98%"></i></div>
+            <div><span>AI Voice Probability</span><strong id="aiProbability">2%</strong></div>
+            <div class="meter"><i id="aiBar" style="width:2%"></i></div>
+          </div>
+
+          <div class="result-meta">
+            <div><span>Processing Time</span><strong>~1.2 sec</strong></div>
+            <div><span>Detection Method</span><strong>AI Speech Analysis</strong></div>
+          </div>
+
+          <div id="recommendation" class="recommendation">
+            <strong>Recommended:</strong> This recording appears safe based on the current analysis.
+          </div>
+
+          <div class="result-actions">
+            <button id="analyzeAnother" class="secondary-btn">Analyze another file</button>
+            <button id="viewHistory" class="secondary-btn">View history</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- History -->
+      <section id="page-history" class="page">
+        <div class="page-title">
+          <div>
+            <div class="eyebrow">VOICE ANALYSIS LOG</div>
+            <h1>Analysis History</h1>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <input id="historySearch" type="search" placeholder="⌕  Search">
+          <select id="riskFilter">
+            <option value="all">Filter by Risk</option>
+            <option value="Low Risk">Low Risk</option>
+            <option value="Elevated Risk">Elevated Risk</option>
+            <option value="High Risk">High Risk</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Filename</th><th>Date Analysed</th><th>Risk Assessment</th><th>Processing Time</th><th>Action</th></tr>
+            </thead>
+            <tbody id="historyBody"></tbody>
+          </table>
+        </div>
+        <div id="emptyHistory" class="empty hidden">No matching analyses.</div>
+      </section>
+
+      <!-- About -->
+      <section id="page-about" class="page about-page">
+        <div class="eyebrow">ABOUT VOICEGUARD</div>
+        <h1>Protecting people from synthetic voices.</h1>
+        <p class="lead">VoiceGuard is a prototype for detecting AI-generated and manipulated speech before it can be used to deceive someone.</p>
+
+        <div class="about-grid">
+          <article>
+            <h3>Our Mission</h3>
+            <p>Make voice-based fraud harder by giving users a clear, understandable risk assessment instead of forcing them to judge a suspicious call themselves.</p>
+          </article>
+          <article>
+            <h3>How It Works</h3>
+            <p>Audio is preprocessed, analyzed for synthetic speech characteristics, and converted into a confidence and risk assessment.</p>
+          </article>
+          <article>
+            <h3>Known Limitations</h3>
+            <p>No detector is perfect. New voice-cloning systems, compression, background noise, and short recordings can reduce detection accuracy.</p>
+          </article>
+          <article>
+            <h3>Privacy</h3>
+            <p>For a production version, audio should be processed securely, retained only when necessary, and protected with explicit user consent.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>VoiceGuard · AI voice authenticity prototype · <a href="#" onclick="return false;">Privacy Policy</a></footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
